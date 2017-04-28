@@ -7,10 +7,10 @@ defmodule Router do
   plug :dispatch
 
   get "/" do
-    {:ok, raw_hostname} = :inet.gethostname
-    hostname = List.to_string(raw_hostname)
+    {:ok, hostname} = :inet.gethostname
+    response = "I'm " <> List.to_string(hostname)
 
-    send_resp(conn, 200, hostname)
+    send_resp(conn, 200, response)
   end
 
   match _ do
